@@ -2,7 +2,8 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    notificationsAllowed: false
+    notificationsAllowed: false,
+    baseURL: 'http://localhost:5000/ev/'
   },
   mutations: {
     setNotificationsAllowed(state, value) {

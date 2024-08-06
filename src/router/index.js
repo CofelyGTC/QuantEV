@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import LandingPage from '../components/LandingPage.vue'
-import Availability from '../components/AvailabilityComponent.vue'
+import LandingPage from '@/views/LandingPage.vue'
+import AvailabilityView from '@/views/AvailabilityView.vue'
+import ChargeEndView from '@/views/ChargeEndView.vue'
+import FreeSpotView from '@/views/FreeSpotView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,7 +15,17 @@ const router = createRouter({
     {
       path: '/availability',
       name: 'availability',
-      component: Availability
+      component: AvailabilityView
+    },
+    {
+      path: '/end_charge',
+      name: 'end_charge',
+      component: ChargeEndView
+    },
+    {
+      path: '/notif_free',
+      name: 'notif_free',
+      component: FreeSpotView
     }
   ]
 })

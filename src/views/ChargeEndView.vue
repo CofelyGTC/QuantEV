@@ -1,4 +1,4 @@
 <script setup></script>
 <template>
-  <p>lala</p>
+  <p>End of charge Notification</p>
 </template>

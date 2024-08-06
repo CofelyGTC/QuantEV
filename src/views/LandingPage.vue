@@ -23,9 +23,9 @@ if (notificationsAllowed.value === false) {
 <template>
   <AllowNotifications v-if="!notificationsAllowed" />
   <div v-else class="hello">
-    <v-btn @click="router.push('availability')">See availability</v-btn>
-    <v-btn>Free spot Notification</v-btn>
-    <v-btn>End of charge Notification</v-btn>
+    <v-btn @click="router.push({ name: 'availability' })">See availability</v-btn>
+    <v-btn @click="router.push({ name: 'notif_free' })">Free spot Notification</v-btn>
+    <v-btn @click="router.push({ name: 'end_charge' })">End of charge Notification</v-btn>
   </div>
 </template>
 
