@@ -38,7 +38,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  //base: '',
+  base: 'quantes_restapi/ev',
   build: {
     emptyOutDir: true
     //outDir: '../GitHub/quantes-restapi1/sources/ev_app/dist'
