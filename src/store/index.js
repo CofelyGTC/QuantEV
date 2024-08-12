@@ -3,11 +3,15 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     notificationsAllowed: false,
-    baseURL: 'http://localhost:5000/ev/'
+    baseURL: 'https://smartbuildings.quantes.equans.be/quantes_restapi/ev/',
+    queuedIn: false
   },
   mutations: {
     setNotificationsAllowed(state, value) {
       state.notificationsAllowed = value
+    },
+    setQueuedIn(state, value) {
+      state.queuedIn = value
     }
   },
   actions: {

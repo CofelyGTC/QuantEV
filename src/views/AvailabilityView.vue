@@ -1,32 +1,78 @@
 <script setup>
-import { computed } from 'vue'
+import { ref, onUnmounted } from 'vue'
 import { useStore } from 'vuex'
 const store = useStore()
 
-const lt = [
-  { car: true, charging: true, message: 'Charging', color: '#a0a4fc' },
-  { car: true, charging: false, message: 'Car Not Charging', color: '#f1a493' },
-  { car: false, charging: true, message: 'Free', color: '#ace6b8' },
-  { car: false, charging: false, message: 'Free', color: '#ace6b8' }
-]
-const data = computed(() => {
-  console.log('get_data: ', get_data)
-  return get_data()
+const parkingData = ref({
+  parking_1: {
+    sensor: false,
+    charging: false,
+    color: '#ace6b8',
+    message: 'Free'
+  },
+  parking_2: {
+    sensor: false,
+    charging: false,
+    color: '#ace6b8',
+    message: 'Free'
+  },
+  parking_3: {
+    sensor: false,
+    charging: false,
+    color: '#ace6b8',
+    message: 'Free'
+  },
+  parking_4: {
+    sensor: false,
+    charging: false,
+    color: '#ace6b8',
+    message: 'Free'
+  }
 })
-const get_data = async () => {
+async function fetchParkingData() {
+  console.log('fetching Parking Data')
+
   const response = await fetch(store.state.baseURL + 'get_availability')
-  const data = response.json()
-  return data
+  const data = await response.json()
+  populateMessages(data)
 }
+const populateMessages = (data) => {
+  for (const key in data) {
+    if (data[key].charging && data[key].sensor) {
+      parkingData.value[key].color = '#a0a4fc'
+      parkingData.value[key].message = 'Charging'
+    } //bleu
+    else if (!data[key].charging && data[key].sensor) {
+      parkingData.value[key].color = '#f1a493'
+      parkingData.value[key].message = 'Not Charging'
+    } //rouge
+    else {
+      parkingData.value[key].color = '#ace6b8'
+      parkingData.value[key].message = 'Free'
+    } //vert
+  }
+}
+fetchParkingData()
+const refresh = setInterval(fetchParkingData, 30000)
+onUnmounted(() => {
+  clearInterval(refresh)
+})
 </script>
 <template>
   <v-container class="h-100">
-    <v-card v-for="n in lt" :key="n" style="margin-top: 10px" :color="n.color">
+    <v-card
+      v-for="(value, key) in parkingData"
+      :key="key"
+      style="margin-top: 10px"
+      v-bind:color="value.color"
+    >
       <v-container>
         <v-row align="center" no-gutters>
-          <v-col cols="8" class="text-left">{{ n.message }}</v-col>
+          <v-col cols="8" class="text-left">{{
+            key.substring(key.length - 1) + '. ' + value.message
+          }}</v-col>
           <v-col cols="2">
-            <v-icon v-if="n.car" icon="mdi-car" size="x-large"></v-icon>
+            <v-icon v-if="value.sensor" icon="mdi-car" size="x-large"></v-icon>
           </v-col>
           <v-col>
             <v-icon icon="mdi-ev-station" cols="2" size="x-large"></v-icon>
@@ -34,7 +80,6 @@ const get_data = async () => {
         </v-row>
       </v-container>
     </v-card>
-    <p>{{ data }}</p>
   </v-container>
 </template>
 <style>

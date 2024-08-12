@@ -12,8 +12,24 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       srcDir: 'src',
-      filename: 'sw.js',
-      strategies: 'injectManifest'
+      //filename: 'sw.js',
+      //strategies: 'injectManifest',
+      manifest: {
+        icons: [
+          {
+            src: 'img/charging_station_192.png',
+            sizes: '192x192',
+            types: 'image/png',
+            purpose: 'any maskable'
+          },
+          {
+            src: 'img/charging_station_512.png',
+            sizes: '512x512',
+            types: 'image/png',
+            purpose: 'any maskable'
+          }
+        ]
+      }
     }),
     vuetify({ autoImport: true })
   ],
@@ -21,5 +37,10 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  base: '/quantes_restapi/ev',
+  build: {
+    emptyOutDir: true,
+    outDir: '../GitHub/quantes-restapi1/sources/ev_app/dist'
   }
 })
