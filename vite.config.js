@@ -40,7 +40,7 @@ export default defineConfig({
   },
   base: '/quantes_restapi/ev',
   build: {
-    emptyOutDir: true,
-    outDir: '../GitHub/quantes-restapi1/sources/ev_app/dist'
+    emptyOutDir: true
+    //outDir: '../GitHub/quantes-restapi1/sources/ev_app/dist'
   }
 })
