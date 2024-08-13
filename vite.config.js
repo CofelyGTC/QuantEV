@@ -15,6 +15,7 @@ export default defineConfig({
       //filename: 'sw.js',
       //strategies: 'injectManifest',
       manifest: {
+        theme_color: '#FFFFFF',
         icons: [
           {
             src: 'img/charging_station_192.png',
@@ -38,7 +39,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  base: 'quantes_restapi/ev',
+  base: '/quantes_restapi/ev',
   build: {
     emptyOutDir: true
     //outDir: '../GitHub/quantes-restapi1/sources/ev_app/dist'
