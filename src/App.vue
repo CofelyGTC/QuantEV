@@ -1,5 +1,13 @@
 <script setup>
 import ToolbarComponent from './components/ToolbarPage.vue'
+
+window.addEventListener('beforeinstallprompt', () => {
+  console.log('beforeinstallprompt')
+})
+
+window.addEventListener('click', () => {
+  console.log('click')
+})
 </script>
 
 <template>

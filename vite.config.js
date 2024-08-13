@@ -15,6 +15,7 @@ export default defineConfig({
       //filename: 'sw.js',
       //strategies: 'injectManifest',
       manifest: {
+        name: 'QuantEV',
         theme_color: '#FFFFFF',
         icons: [
           {
@@ -28,6 +29,22 @@ export default defineConfig({
             sizes: '512x512',
             types: 'image/png',
             purpose: 'any maskable'
+          }
+        ],
+        screenshots: [
+          {
+            src: 'img/charging_station_512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            form_factor: 'wide',
+            label: 'QuantEV'
+          },
+          {
+            src: 'img/charging_station_192.png',
+            sizes: '192x192',
+            type: 'image/png',
+            form_factor: 'thin',
+            label: 'QuantEV'
           }
         ]
       }

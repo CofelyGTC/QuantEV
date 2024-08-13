@@ -14,11 +14,3 @@ const app = createApp(App).use(vuetify).use(store).use(router)
 app.mount('#app')
 
 store.dispatch('initializeNotifications')
-
-window.addEventListener('beforeinstallprompt', () => {
-  console.log('beforeinstallprompt')
-})
-
-window.addEventListener('click', () => {
-  console.log('click')
-})
