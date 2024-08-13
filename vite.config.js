@@ -40,10 +40,10 @@ export default defineConfig({
             label: 'QuantEV'
           },
           {
-            src: 'img/charging_station_192.png',
-            sizes: '192x192',
+            src: 'img/charging_station_512.png',
+            sizes: '512x512',
             type: 'image/png',
-            form_factor: 'thin',
+            form_factor: 'narrow',
             label: 'QuantEV'
           }
         ]
