@@ -22,13 +22,25 @@ export default defineConfig({
             src: 'img/charging_station_192.png',
             sizes: '192x192',
             types: 'image/png',
-            purpose: 'any maskable'
+            purpose: 'any'
           },
           {
             src: 'img/charging_station_512.png',
             sizes: '512x512',
             types: 'image/png',
-            purpose: 'any maskable'
+            purpose: 'any'
+          },
+          {
+            src: 'img/maskable_icon_x192.png',
+            sizes: '192x192',
+            types: 'image/png',
+            purpose: 'maskable'
+          },
+          {
+            src: 'img/maskable_icon_x512.png',
+            sizes: '512x512',
+            types: 'image/png',
+            purpose: 'maskable'
           }
         ],
         screenshots: [
@@ -56,7 +68,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  base: '/quantes_restapi/ev',
+  //base: '/quantes_restapi/ev',
   build: {
     emptyOutDir: true
     //outDir: '../GitHub/quantes-restapi1/sources/ev_app/dist'
