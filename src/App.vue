@@ -1,13 +1,33 @@
 <script setup>
+import { ref } from 'vue'
 import ToolbarComponent from './components/ToolbarPage.vue'
 
+const installable = ref(false)
+let deferredPrompt = null
 window.addEventListener('beforeinstallprompt', (event) => {
-  console.log('beforeinstallprompt')
+  event.preventDefault()
+  console.log('👍', 'beforeinstallprompt', event)
+  deferredPrompt = event
+  installable.value = true
 })
 
-window.addEventListener('click', () => {
-  console.log('click')
-})
+const installApp = async () => {
+  console.log('👍', 'butInstall-clicked')
+  const promptEvent = deferredPrompt
+  if (!promptEvent) {
+    console.log("The deferred prompt isn't available.")
+    return
+  }
+  // Show the install prompt.
+  promptEvent.prompt()
+  // Log the result
+  const result = await promptEvent.userChoice
+  console.log('👍', 'userChoice', result)
+  // Reset the deferred prompt variable, since
+  // prompt() can only be called once.
+  deferredPrompt = null
+  // Hide the install button.
+}
 </script>
 
 <template>
@@ -16,6 +36,7 @@ window.addEventListener('click', () => {
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
     <div class="wrapper"></div>
     <router-view />
+    <v-btn v-if="installable" @click="installApp">Install App</v-btn>
   </div>
 </template>
 
