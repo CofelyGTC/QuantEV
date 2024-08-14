@@ -23,8 +23,6 @@ const installApp = async () => {
   // Log the result
   const result = await promptEvent.userChoice
   console.log('👍', 'userChoice', result)
-  // Reset the deferred prompt variable, since
-  // prompt() can only be called once.
   deferredPrompt = null
   // Hide the install button.
 }
@@ -36,13 +34,22 @@ const installApp = async () => {
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
     <div class="wrapper"></div>
     <router-view />
-    <v-btn v-if="installable" @click="installApp">Install App</v-btn>
   </div>
+  <v-footer
+    v-if="installable"
+    color="indigo"
+    lines="one"
+    class="justify-center position-absolute left-0 bottom-0 w-100"
+    @click="installApp"
+    >Install App
+    <v-icon icon="mdi-download"></v-icon>
+  </v-footer>
 </template>
 
 <style>
 body {
   text-align: center;
+  background-color: white;
 }
 .main-content {
   padding-top: 64px;

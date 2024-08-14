@@ -12,10 +12,11 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       srcDir: 'src',
-      //filename: 'sw.js',
-      //strategies: 'injectManifest',
+      filename: 'sw.js',
+      strategies: 'injectManifest',
       manifest: {
         name: 'QuantEV',
+        short_name: 'QuantEV',
         theme_color: '#FFFFFF',
         icons: [
           {
@@ -45,15 +46,8 @@ export default defineConfig({
         ],
         screenshots: [
           {
-            src: 'img/charging_station_512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            form_factor: 'wide',
-            label: 'QuantEV'
-          },
-          {
-            src: 'img/charging_station_512.png',
-            sizes: '512x512',
+            src: 'img/screenshot_narrow.png',
+            sizes: '433x633',
             type: 'image/png',
             form_factor: 'narrow',
             label: 'QuantEV'

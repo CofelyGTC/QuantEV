@@ -3,31 +3,17 @@ import { ref, onUnmounted } from 'vue'
 import { useStore } from 'vuex'
 const store = useStore()
 
+const initialValue = {
+  sensor: false,
+  charging: false,
+  color: '#f2f2f2',
+  message: 'Unkown'
+}
 const parkingData = ref({
-  parking_1: {
-    sensor: false,
-    charging: false,
-    color: '#ace6b8',
-    message: 'Free'
-  },
-  parking_2: {
-    sensor: false,
-    charging: false,
-    color: '#ace6b8',
-    message: 'Free'
-  },
-  parking_3: {
-    sensor: false,
-    charging: false,
-    color: '#ace6b8',
-    message: 'Free'
-  },
-  parking_4: {
-    sensor: false,
-    charging: false,
-    color: '#ace6b8',
-    message: 'Free'
-  }
+  parking_1: initialValue,
+  parking_2: initialValue,
+  parking_3: initialValue,
+  parking_4: initialValue
 })
 async function fetchParkingData() {
   console.log('fetching Parking Data')
@@ -41,14 +27,17 @@ const populateMessages = (data) => {
     if (data[key].charging && data[key].sensor) {
       parkingData.value[key].color = '#a0a4fc'
       parkingData.value[key].message = 'Charging'
+      parkingData.value[key].sensor = true
     } //bleu
     else if (!data[key].charging && data[key].sensor) {
       parkingData.value[key].color = '#f1a493'
       parkingData.value[key].message = 'Not Charging'
+      parkingData.value[key].sensor = true
     } //rouge
     else {
       parkingData.value[key].color = '#ace6b8'
       parkingData.value[key].message = 'Free'
+      parkingData.value[key].sensor = false
     } //vert
   }
 }

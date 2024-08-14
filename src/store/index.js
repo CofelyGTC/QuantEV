@@ -18,7 +18,6 @@ export default createStore({
     initializeNotifications({ commit }) {
       const value = Notification.permission === 'granted' ? true : false
       commit('setNotificationsAllowed', value)
-      console.log('setting notifications', value)
     }
   }
 })
