@@ -4,8 +4,8 @@ import { createStore } from 'vuex'
 export default createStore({
   state: reactive({
     notificationsAllowed: false,
-    //baseURL: 'https://smartbuildings.quantes.equans.be/quantes_restapi/ev/',
-    baseURL: 'http://localhost:5000/ev/',
+    baseURL: 'https://smartbuildings.quantes.equans.be/quantes_restapi/ev/',
+    //baseURL: 'http://localhost:5000/ev/',
     queuedIn: false,
     subscription: 'null'
   }),
