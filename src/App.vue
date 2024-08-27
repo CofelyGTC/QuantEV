@@ -12,7 +12,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
 })
 
 const installApp = async () => {
-  console.log('👍', 'butInstall-clicked')
+  //console.log('👍', 'butInstall-clicked')
   const promptEvent = deferredPrompt
   if (!promptEvent) {
     console.log("The deferred prompt isn't available.")

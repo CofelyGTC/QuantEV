@@ -3,6 +3,7 @@
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import FreeSpotButton from '@/components/FreeSpotButton.vue'
 
 const router = useRouter()
 const store = useStore()
@@ -23,7 +24,7 @@ if (notificationsAllowed.value === false) {
   <!--AllowNotifications v-if="!notificationsAllowed" /-->
   <div class="justify-center">
     <v-btn @click="router.push({ name: 'availability' })" class="ma-2">See availability</v-btn>
-    <v-btn @click="router.push({ name: 'notif_free' })" class="ma-2">Free spot Notification</v-btn>
+    <FreeSpotButton />
     <v-btn prepend-icon="mdi-traffic-cone" disabled class="ma-2">
       End of charge Notification
     </v-btn>

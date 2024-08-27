@@ -10,14 +10,14 @@ const initialValue = {
   message: 'Unkown'
 }
 const parkingData = ref({
-  parking_1: initialValue,
-  parking_2: initialValue,
-  parking_3: initialValue,
-  parking_4: initialValue
+  parking_1: Object.create(initialValue),
+  parking_2: Object.create(initialValue),
+  parking_3: Object.create(initialValue),
+  parking_4: Object.create(initialValue)
 })
+
 async function fetchParkingData() {
   console.log('fetching Parking Data')
-
   const response = await fetch(store.state.baseURL + 'get_availability')
   const data = await response.json()
   populateMessages(data)
@@ -56,7 +56,7 @@ onUnmounted(() => {
       v-bind:color="value.color"
     >
       <v-container>
-        <v-row align="center" no-gutters>
+        <v-row align="center" no-gutters :class="key">
           <v-col cols="8" class="text-left">{{
             key.substring(key.length - 1) + '. ' + value.message
           }}</v-col>

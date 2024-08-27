@@ -5,6 +5,7 @@ const store = useStore()
 const color = ref('indigo')
 const queuedIn = ref(localStorage.getItem('QueuedIn'))
 const inputData = ref(localStorage.getItem('queueEmail'))
+
 watch(inputData, (val) => {
   localStorage.setItem('queueEmail', val)
 })
@@ -51,6 +52,7 @@ const sendRequest = async (method) => {
       class="py-4 px-1"
       variant="elevated"
       :color="color"
+      v-if="!subscription"
     >
       <form @submit.prevent="addToQueue">
         <v-text-field

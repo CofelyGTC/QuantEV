@@ -25,7 +25,6 @@ const saveSubscription = async (subscription) => {
       body: JSON.stringify(subscription)
     }
   )
-
   return response.json()
 }
 
