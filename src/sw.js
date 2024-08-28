@@ -16,17 +16,6 @@ const urlBase64ToUint8Array = (base64String) => {
 
   return outputArray
 }
-const saveSubscription = async (subscription) => {
-  const response = await fetch(
-    'https://smartbuildings.quantes.equans.be/quantes_restapi/ev/save-subscription',
-    {
-      method: 'post',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify(subscription)
-    }
-  )
-  return response.json()
-}
 
 self.addEventListener('activate', async () => {
   console.log('activating')
@@ -36,8 +25,7 @@ self.addEventListener('activate', async () => {
       'BAMvmDPwZonZMiMQ0MA-hVzxOBsTsDbdH67VW9RvZTG5cPuHAMwhlsK0D9zdg7Qc5V_CVaNLlrlFfihh6QtogaQ'
     )
   })
-  const response = await saveSubscription(subscription)
-  console.log(response)
+  console.log(subscription)
 })
 self.addEventListener('push', async (e) => {
   const data = e.data.json()
