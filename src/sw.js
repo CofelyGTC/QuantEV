@@ -1,33 +1,22 @@
 import { precacheAndRoute } from 'workbox-precaching'
 precacheAndRoute(self.__WB_MANIFEST)
 
-const urlBase64ToUint8Array = (base64String) => {
-  const padding = '='.repeat((4 - (base64String.length % 4)) % 4)
-  const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/')
-
-  const rawData = atob(base64)
-  const outputArray = new Uint8Array(rawData.length)
-
-  for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i)
-  }
-
-  return outputArray
-}
-
-self.addEventListener('activate', async () => {
-  console.log('activating')
-  const subscription = await self.registration.pushManager.subscribe({
-    userVisibleOnly: true,
-    applicationServerKey: urlBase64ToUint8Array(
-      'BAMvmDPwZonZMiMQ0MA-hVzxOBsTsDbdH67VW9RvZTG5cPuHAMwhlsK0D9zdg7Qc5V_CVaNLlrlFfihh6QtogaQ'
-    )
-  })
-  console.log(subscription)
+self.addEventListener('pushsubscriptionchange', async () => {
+  console.log('push subscription change')
 })
+
+self.addEventListener('notificationclick', async () => {
+  console.log('push subscription change')
+})
+
 self.addEventListener('push', async (e) => {
   const data = e.data.json()
-  self.registration.showNotification(data.title, { body: data.msg })
+  self.registration.showNotification(data.title, {
+    body: data.msg,
+    icon: '/public/img/maskable_icon_x192.png',
+    image: '/public/img/maskable_icon_x192.png',
+    badge: '/public/img/maskable_icon_x192.png'
+  }) //icon et badge à rajouter
 })
 self.addEventListener('updatefound', () => {
   console.log('new service worker found test2')

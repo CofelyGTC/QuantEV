@@ -18,12 +18,27 @@ export default createStore({
     },
     setSubscription(state, value) {
       state.subscription = value
+      console.log('subscription: ', value)
     }
   },
   actions: {
     initializeNotifications({ commit }) {
       const value = Notification.permission === 'granted' ? true : false
       commit('setNotificationsAllowed', value)
+    },
+    getSubscription({ commit }) {
+      navigator.serviceWorker.ready
+        .then((registration) => {
+          return registration.pushManager.getSubscription()
+        })
+        .then(function (subscription) {
+          if (subscription) {
+            commit('setSubscription', subscription)
+            console.log('subscription: ', subscription)
+          } else {
+            console.log('No subscription found')
+          }
+        })
     }
   }
 })

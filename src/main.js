@@ -13,16 +13,15 @@ const app = createApp(App).use(vuetify).use(store).use(router)
 
 app.mount('#app')
 
-store.dispatch('initializeNotifications')
-
-navigator.serviceWorker.ready
-  .then((registration) => {
-    return registration.pushManager.getSubscription()
-  })
-  .then(function (subscription) {
-    if (subscription) {
-      store.commit('setSubscription', subscription)
-    } else {
-      console.log('No subscription found')
-    }
-  })
+store.dispatch('getSubscription')
+// navigator.serviceWorker.ready
+//   .then((registration) => {
+//     return registration.pushManager.getSubscription()
+//   })
+//   .then(function (subscription) {
+//     if (subscription) {
+//       store.commit('setSubscription', subscription)
+//     } else {
+//       console.log('No subscription found')
+//     }
+//   })

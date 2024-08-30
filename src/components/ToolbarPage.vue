@@ -13,7 +13,7 @@ const refresh = () => {
     <v-btn id="menu-activator" icon="mdi-dots-vertical"></v-btn>
     <v-menu activator="#menu-activator">
       <v-list>
-        <v-list-item title="Refresh" @click="refresh"> </v-list-item>
+        <v-list-item title="Refresh App" @click="refresh"> </v-list-item>
       </v-list>
     </v-menu>
   </v-toolbar>
