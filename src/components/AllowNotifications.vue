@@ -34,11 +34,15 @@ const subscribePushManager = async () => {
 }
 
 const requestNotificationPermission = async () => {
-  const permission = await Notification.requestPermission()
-  if (permission === 'granted') {
-    console.log('permission: ', permission)
-    store.commit('setNotificationsAllowed', true)
-    subscribePushManager()
+  if (Notification) {
+    const permission = await Notification.requestPermission()
+    if (permission === 'granted') {
+      console.log('permission: ', permission)
+      store.commit('setNotificationsAllowed', true)
+      subscribePushManager()
+    }
+  } else {
+    console.log('Notifications not available')
   }
 }
 </script>
