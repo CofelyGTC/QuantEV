@@ -7,7 +7,8 @@ export default createStore({
     baseURL: 'https://smartbuildings.quantes.equans.be/quantes_restapi/ev/',
     //baseURL: 'http://localhost:5000/ev/',
     queuedIn: false,
-    subscription: null
+    subscription: null,
+    isIOS: null
   }),
   mutations: {
     setNotificationsAllowed(state, value) {
@@ -18,7 +19,9 @@ export default createStore({
     },
     setSubscription(state, value) {
       state.subscription = value
-      console.log('subscription: ', value)
+    },
+    setIsIOS(state, value) {
+      state.isIOS = value
     }
   },
   actions: {
@@ -27,6 +30,7 @@ export default createStore({
       commit('setNotificationsAllowed', value)
     },
     getSubscription({ commit }) {
+      console.log('gettingSubscription1')
       navigator.serviceWorker.ready
         .then((registration) => {
           return registration.pushManager.getSubscription()
@@ -39,6 +43,9 @@ export default createStore({
             console.log('No subscription found')
           }
         })
+    },
+    testIsIOS({ commit }) {
+      commit('setIsIOS', /iPhone|iPad|iPod/i.test(navigator.userAgent))
     }
   }
 })

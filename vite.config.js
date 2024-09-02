@@ -18,6 +18,7 @@ export default defineConfig({
         name: 'QuantEV',
         short_name: 'QuantEV',
         theme_color: '#FFFFFF',
+        display: 'standalone',
         icons: [
           {
             src: 'img/charging_station_192.png',
