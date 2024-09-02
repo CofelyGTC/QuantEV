@@ -25,9 +25,11 @@ const installApp = async () => {
 }
 store.dispatch('testIsIOS')
 const isIOS = ref(store.state.isIOS)
+console.log('isIOS: ', isIOS)
 const standalone = ref(false)
 if ('standalone' in navigator) {
   standalone.value = navigator.standalone
+  console.log('standalone.value: ', standalone.value)
 }
 </script>
 <template>
