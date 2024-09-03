@@ -24,11 +24,20 @@ const subscribeQueue = async () => {
     queueNotification.value = true
   }
 }
+const remove_subscription = () => {
+  localStorage.removeItem('queueNotification')
+  queueNotification.value = false
+}
 const unsubscribeQueue = async () => {
   const requestSent = await sendRequest('delete')
   if (requestSent.ok) {
-    localStorage.removeItem('queueNotification')
-    queueNotification.value = false
+    remove_subscription()
+  }
+}
+navigator.serviceWorker.onmessage = (event) => {
+  if (event.data && event.data.type === 'FREE_SPOT_PUSH') {
+    console.log('FREE_SPOT_PUSH')
+    remove_subscription()
   }
 }
 const sendRequest = async (method) => {

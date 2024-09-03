@@ -17,6 +17,12 @@ self.addEventListener('push', async (e) => {
     image: '/public/img/maskable_icon_x192.png',
     badge: '/public/img/maskable_icon_x192.png'
   }) //icon et badge à rajouter
+  const clients = await self.clients.matchAll()
+  if (clients && clients.length) {
+    for (const client of clients) {
+      client.postMessage({ type: data.type })
+    }
+  }
 })
 self.addEventListener('updatefound', () => {
   console.log('new service worker found test2')
