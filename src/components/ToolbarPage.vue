@@ -6,7 +6,7 @@ const refresh = () => {
   location.reload(true)
 }
 const about = () => {
-  alert('version: 1.0.1')
+  alert('Version: 1.0.2')
 }
 </script>
 <template>
